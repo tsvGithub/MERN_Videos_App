@@ -1,0 +1,23 @@
+{
+  "name": "mern_videos_app",
+  "version": "1.0.0",
+  "description": "MERN Videos",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsvGithub/MERN_Videos_App.git"
+  },
+  "keywords": [
+    "MERN",
+    "Videos"
+  ],
+  "author": "tsv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tsvGithub/MERN_Videos_App/issues"
+  },
+  "homepage": "https://github.com/tsvGithub/MERN_Videos_App#readme"
+}
