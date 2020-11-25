@@ -13,7 +13,7 @@ class SignIn extends Component {
       email: "",
       password: "",
     };
-    console.log(this.state);
+    // console.log(this.state);
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
     this.emailInputChangeHandler = this.emailInputChangeHandler.bind(this);
     this.passwordInputChangeHandler = this.passwordInputChangeHandler.bind(this);
@@ -29,9 +29,9 @@ class SignIn extends Component {
     });
   }
   onSubmitHandler(e) {
-    debugger;
+    // debugger;
     e.preventDefault();
-    console.log(this.state.email, this.state.password);
+    // console.log(this.state.email, this.state.password);
     if (
       //   this.state.email &&
       //   this.state.password
@@ -47,7 +47,7 @@ class SignIn extends Component {
           password: this.state.password,
         })
         .then((res) => {
-          console.log(res.data);
+          console.log(res);
         })
         .catch((err) => {
           console.log(err);
