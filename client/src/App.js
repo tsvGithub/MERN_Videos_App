@@ -1,11 +1,12 @@
 import React from "react";
+import { Route } from "react-router-dom";
+
+import SignIn from "./components/Form/SignIn/SignIn";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Videos App </h1>
-      </header>
-    </div>
+    <>
+      <Route exact path="/login" component={SignIn} />
+    </>
   );
 }
 

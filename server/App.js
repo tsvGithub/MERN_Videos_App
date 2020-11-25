@@ -5,7 +5,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 //-----------MORGAN-----------------
-// Used to log everything like GET, POST, etc requests
+// MORGAN logs everything like GET, POST, etc requests
 app.use(morgan("dev"));
 //-----------CORS-------------------
 // It ensures that we prevent Cross-Origin Resource Sharing(CORS) errors
@@ -19,7 +19,7 @@ app.use(express.json());
 
 //------------------------
 //--------MongoDB----------
-mongoose.connect("mongodb://127.0.0.1/videosApp", {
+mongoose.connect("mongodb://localhost:27017/videosApp", {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -29,6 +29,6 @@ mongoose.connect("mongodb://127.0.0.1/videosApp", {
 // app.use("/", (req, res) => {
 //   res.send("App is running now ...");
 // });
+app.use("/api/login", require("./routes/login"));
 app.use("/api/signUp", require("./routes/signUp"));
-
 module.exports = app;
