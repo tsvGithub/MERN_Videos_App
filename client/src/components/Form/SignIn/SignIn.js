@@ -7,41 +7,35 @@ import "../form.css";
 
 class SignIn extends Component {
   constructor(props) {
-    super(props);
-
+    super();
     this.state = {
       email: "",
       password: "",
     };
     // console.log(this.state);
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
-    this.emailInputChangeHandler = this.emailInputChangeHandler.bind(this);
-    this.passwordInputChangeHandler = this.passwordInputChangeHandler.bind(this);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
   }
-  emailInputChangeHandler(event) {
+  onChangeHandler(e) {
+    const { name, value } = e.target;
     this.setState({
-      email: event.target.value,
+      [name]: value,
     });
   }
-  passwordInputChangeHandler(event) {
-    this.setState({
-      password: event.target.value,
-    });
-  }
-  onSubmitHandler(e) {
+
+  async onSubmitHandler(e) {
     // debugger;
     e.preventDefault();
     // console.log(this.state.email, this.state.password);
     if (
-      //   this.state.email &&
-      //   this.state.password
-
+      // this.state.email &&
+      // this.state.password &&
       !(this.state.email === "" || this.state.password === "") &&
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
         this.state.email
       )
     ) {
-      axios
+      await axios
         .post("http://localhost:5000/api/login/", {
           email: this.state.email,
           password: this.state.password,
@@ -52,6 +46,13 @@ class SignIn extends Component {
         .catch((err) => {
           console.log(err);
         });
+
+      //after the Form is submitted set STATE to blank
+      this.setState({
+        email: "",
+        password: "",
+      });
+      console.log(this.state);
     } else {
       alert("Please enter valid details");
     }
@@ -70,8 +71,9 @@ class SignIn extends Component {
             className="form-control"
             type="email"
             name="email"
+            value={this.state.email}
             placeholder="example@domain.com"
-            onChange={this.emailInputChangeHandler}
+            onChange={this.onChangeHandler}
             required
           />
         </div>
@@ -85,8 +87,9 @@ class SignIn extends Component {
             className="form-control"
             type="password"
             name="password"
+            value={this.state.password}
             placeholder="********"
-            onChange={this.passwordInputChangeHandler}
+            onChange={this.onChangeHandler}
             required
           />
         </div>

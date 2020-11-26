@@ -7,7 +7,7 @@ import "../form.css";
 
 class SignUp extends React.Component {
   constructor(props) {
-    super(props);
+    super();
 
     this.state = {
       firstName: "",
@@ -17,10 +17,7 @@ class SignUp extends React.Component {
     };
 
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
-    this.firstNameInputChangeHandler = this.firstNameInputChangeHandler.bind(this);
-    this.lastNameInputChangeHandler = this.lastNameInputChangeHandler.bind(this);
-    this.emailInputChangeHandler = this.emailInputChangeHandler.bind(this);
-    this.passwordInputChangeHandler = this.passwordInputChangeHandler.bind(this);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
   }
 
   onSubmitHandler(e) {
@@ -49,32 +46,22 @@ class SignUp extends React.Component {
         .catch((err) => {
           console.log(err);
         });
+      this.setState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+      });
+      //   console.log(this.state);
     } else {
       alert("Please enter valid details");
     }
   }
 
-  firstNameInputChangeHandler(event) {
+  onChangeHandler(e) {
+    const { name, value } = e.target;
     this.setState({
-      firstName: event.target.value,
-    });
-  }
-
-  lastNameInputChangeHandler(event) {
-    this.setState({
-      lastName: event.target.value,
-    });
-  }
-
-  emailInputChangeHandler(event) {
-    this.setState({
-      email: event.target.value,
-    });
-  }
-
-  passwordInputChangeHandler(event) {
-    this.setState({
-      password: event.target.value,
+      [name]: value,
     });
   }
 
@@ -92,8 +79,9 @@ class SignUp extends React.Component {
             className="form-control"
             type="text"
             name="firstName"
+            value={this.state.firstName}
             placeholder="First Name"
-            onChange={this.firstNameInputChangeHandler}
+            onChange={this.onChangeHandler}
             required
           />
         </div>
@@ -107,8 +95,9 @@ class SignUp extends React.Component {
             className="form-control"
             type="text"
             name="lastName"
+            value={this.state.lastName}
             placeholder="Last Name"
-            onChange={this.lastNameInputChangeHandler}
+            onChange={this.onChangeHandler}
             required
           />
         </div>
@@ -122,8 +111,9 @@ class SignUp extends React.Component {
             className="form-control"
             type="email"
             name="email"
+            value={this.state.email}
             placeholder="example@domain.com"
-            onChange={this.emailInputChangeHandler}
+            onChange={this.onChangeHandler}
             required
           />
         </div>
@@ -137,8 +127,9 @@ class SignUp extends React.Component {
             className="form-control"
             type="password"
             name="password"
+            value={this.state.password}
             placeholder="********"
-            onChange={this.passwordInputChangeHandler}
+            onChange={this.onChangeHandler}
             required
           />
         </div>

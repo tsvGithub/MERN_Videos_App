@@ -2,7 +2,7 @@ import React from "react";
 
 import "./form.css";
 
-const form = (props) => {
+const Form = (props) => {
   return (
     <div>
       <div className="container mt-5">
@@ -20,4 +20,4 @@ const form = (props) => {
   );
 };
 
-export default form;
+export default Form;
