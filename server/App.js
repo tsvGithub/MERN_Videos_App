@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const cors = require("cors");
 
+const checkAuth = require("./middleware/check-auth");
+
 //-----------MORGAN-----------------
 // MORGAN logs everything like GET, POST, etc requests
 app.use(morgan("dev"));
@@ -25,10 +27,15 @@ mongoose.connect("mongodb://localhost:27017/videosApp", {
   useUnifiedTopology: true,
 });
 //-----------------------------------------
+//To make uploads folder publically available with '/api/videos'/ route
+app.use("/api/videos", express.static("media/uploads"));
 //-----Routes-------
 // app.use("/", (req, res) => {
 //   res.send("App is running now ...");
 // });
+
 app.use("/api/login", require("./routes/login"));
 app.use("/api/signUp", require("./routes/signUp"));
+app.use("/api/upload", checkAuth, require("./routes/upload"));
+
 module.exports = app;

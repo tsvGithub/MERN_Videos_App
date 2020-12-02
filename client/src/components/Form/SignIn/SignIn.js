@@ -11,6 +11,7 @@ class SignIn extends Component {
     this.state = {
       email: "",
       password: "",
+      token: "",
     };
     // console.log(this.state);
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
@@ -42,6 +43,15 @@ class SignIn extends Component {
         })
         .then((res) => {
           console.log(res);
+          this.setState({
+            token: res.data.token,
+          });
+          console.log(this.state.token);
+          const data = {
+            token: this.state.token,
+            time: new Date().getTime(),
+          };
+          localStorage.setItem("userTokenTime", JSON.stringify(data));
         })
         .catch((err) => {
           console.log(err);
