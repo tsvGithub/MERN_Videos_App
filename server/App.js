@@ -37,5 +37,6 @@ app.use("/api/videos", express.static("media/uploads"));
 app.use("/api/login", require("./routes/login"));
 app.use("/api/signUp", require("./routes/signUp"));
 app.use("/api/upload", checkAuth, require("./routes/upload"));
+app.use("/api/videoList", checkAuth, require("./routes/videoList"));
 
 module.exports = app;
