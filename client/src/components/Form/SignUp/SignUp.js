@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 import Form from "../form";
@@ -14,6 +14,7 @@ class SignUp extends React.Component {
       lastName: "",
       email: "",
       password: "",
+      redirect: localStorage.getItem("userTpkenTime") ? true : false,
     };
 
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
@@ -41,7 +42,10 @@ class SignUp extends React.Component {
           password: this.state.password,
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
+          this.setState({
+            redirect: true,
+          });
         })
         .catch((err) => {
           console.log(err);
@@ -66,6 +70,7 @@ class SignUp extends React.Component {
   }
 
   render() {
+    if (this.state.redirect) return <Redirect to="/" />;
     return (
       <Form onSubmit={this.onSubmitHandler.bind(this)}>
         <h3 className="text-center text-info">Register</h3>
